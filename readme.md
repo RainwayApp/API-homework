@@ -108,3 +108,5 @@ Adds a game to a user's library.
 
 ### DELETE users/[id]/games/[gameid]
 Removes a game from a user's library.
+
+When you have completed the assignment, upload it to a repository under your personal github account and link it to us in an email to work-at [at] rainway.com. Include all instructions for setting up an instance.
