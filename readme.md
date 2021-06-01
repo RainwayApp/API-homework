@@ -69,7 +69,7 @@ Request body will be JSON, same format as the previous.
 Deletes a game. Should also remove the game from all users' libraries.
 
 ### GET users/[id]
-Get a user's info by ID.
+Gets a user's info by ID.
 ```JSON
 {
     "id": "...",
@@ -87,7 +87,7 @@ Adds a user. Body will contain user info (just username). Returns the id: `{"id"
 Updates a user. Same body as previous.
 
 ### GET users/[id]/games
-Get a user's game library.
+Gets a user's game library.
 ```JSON
     {
         "games": [
@@ -101,10 +101,10 @@ Get a user's game library.
 ```
 
 ### POST users/[id]/games
-Add a game to a user's library.
+Adds a game to a user's library.
 ```JSON
 {"id": "..."}
 ```
 
 ### DELETE users/[id]/games/[gameid]
-Remove a game from a user's library.
+Removes a game from a user's library.
