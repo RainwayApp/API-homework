@@ -48,10 +48,10 @@ The API wrapper surrounding your database should accept and return standard JSON
 Returns the info for a particular game by ID.
 ```JSON
 {
-    id: "...",
-    title: "Titanfall 2",
-    description: "Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force.",
-    ageRating: "M"
+    "id": "...",
+    "title": "Titanfall 2",
+    "description": "Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force.",
+    "ageRating": "M"
 }
 ```
 
@@ -59,7 +59,7 @@ Returns the info for a particular game by ID.
 Returns info for all games in an array.
 
 ### POST games
-Adds a new game. Body will contain game info. Returns the id: `{id: "..."}`.
+Adds a new game. Body will contain game info. Returns the id: `{"id": "..."}`.
 
 ### PUT games/[id]
 Updates or replaces a game by ID.
@@ -72,15 +72,15 @@ Deletes a game. Should also remove the game from all users' libraries.
 Get a user's info by ID.
 ```JSON
 {
-    id: "...",
-    username: "Gregor"
+    "id": "...",
+    "username": "Gregor"
 }
 ```
 
 ### POST users
-Adds a user. Body will contain user info (just username). Returns the id: `{id: "..."}`.
+Adds a user. Body will contain user info (just username). Returns the id: `{"id": "..."}`.
 ```JSON
-{username: "AwesomeUser2222"}
+{"username": "AwesomeUser2222"}
 ```
 
 ### PUT users/[id]
@@ -90,10 +90,10 @@ Updates a user. Same body as previous.
 Get a user's game library.
 ```JSON
     {
-        games: [
+        "games": [
             {
-                game: {...},
-                playTime: (number of minutes played)
+                "game": {...},
+                "playTime": (number of minutes played)
             }
             ...
         ]
@@ -103,7 +103,7 @@ Get a user's game library.
 ### POST users/[id]/games
 Add a game to a user's library.
 ```JSON
-{id: "..."}
+{"id": "..."}
 ```
 
 ### DELETE users/[id]/games/[gameid]
