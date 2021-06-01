@@ -8,7 +8,7 @@ Here at Rainway we love video games. As such, you will be creating a system to m
 
 The data model can be described as follows:
 
-A *game* has a *title*, *description*, and *age rating* (ESRB guidelines, E for Everyone through M for Mature).
+A *game* has a *title*, *description*, a set of 1 to 5 *images* (random strings with 32-256 chars), and *age rating* (ESRB guidelines, E for Everyone through M for Mature).
 
 A *user* has a *username* and an arbitrary number of *games* owned. They also have a *play time* associated with each game, denoting how long they've spent playing the game.
 
@@ -51,7 +51,8 @@ Returns the info for a particular game by ID.
     "id": "...",
     "title": "Titanfall 2",
     "description": "Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force.",
-    "ageRating": "M"
+    "ageRating": "M",
+    "images":["someSetOf","bannerStrings"]
 }
 ```
 
@@ -86,6 +87,9 @@ Adds a user. Body will contain user info (just username). Returns the id: `{"id"
 ### PUT users/[id]
 Updates a user. Same body as previous.
 
+### DELETE users/[id]
+Deletes a user.  Any "PII" (their ID), should be 100% striken from the database, but for metrics purposes we want to preserve their playtimes for games.  In no event should a deleted user ever be able to be associated back to the remembered play times.
+
 ### GET users/[id]/games
 Gets a user's game library.
 ```JSON
@@ -106,7 +110,36 @@ Adds a game to a user's library.
 {"id": "..."}
 ```
 
+### POST users/[id]/games/[gameid]
+Adds playTime for a game in a users library.  The submitted time should be added to the time already stored for the game for the user.
+```JSON
+{
+ "game":{
+  "id":"...",
+  "playTime":(number of minutes played, round up)
+  }
+}
+```
+
 ### DELETE users/[id]/games/[gameid]
-Removes a game from a user's library.
+Removes a game from a user's library.  Time played for the game should not be removed.  To be clear Adding a game, playing for some time, removing the game, and then adding back the same game should not reset the time the user played.  This is different than from when an entire user account is deleted and should be a "recoverable" event.
+```JSON
+{"id": "..."}
+```
+
+### GET static/text/[a file]
+Allow for fetching some sort of static content.  The contents of the static file should be returned, a few simple text files is plenty.
+
+
+
+## Additional Constraints and Considerations
+
+Structure the database so that it can answer typical Business Analytics questions.  Marketting may want to know "What was the most popular game played last month by users who played more than 30 minutes of this specific game".  We may also want to be answer things like "How many new games were added to the system last week".
+
+As mentioned in the route definitions... Allow for a way to decouple playtime aggregation from users PII (their id).  In the event a user deletes their account it's important the business does not "forget" about the time a game was played.  It's vitally important however that there's *nothing* tieing the deleted user back to the games they owned or played after the account is deleted.
+
+Api, Route and database performance is important. Avoid processing input data sequentially where relevant.  Avoid connecting to the database when it's not needed.  
+
+Any routes accepting input should properly error when that input is missing or is invalid.
 
 When you have completed the assignment, upload it to a repository under your personal github account and link it to us in an email to work-at [at] rainway.com. Include all instructions for setting up an instance.
