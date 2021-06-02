@@ -1,6 +1,6 @@
 # Take-home assignment: API
 
-For this assignment you will be creating a simple REST API around a database backend using php and mysql. You may use any framework you like for the API, but it must work with a standard mysql/mariadb database, ideally user configurable.
+For this assignment you will be creating a simple REST API around a database backend. You may use any language or framework you like for the API, and any database you prefer for the backend.
 
 Here at Rainway we love video games. As such, you will be creating a system to manage users' video game libraries.
 
@@ -38,7 +38,7 @@ To get started, here is some sample data:
   * Deus Ex: Game of the Year Edition, 230 hours play time
 
 
-Please include a prepared SQL query to load the data into your database, however you should choose to architect it.
+Please include a prepared query to load the data into your database, however you should choose to architect it.
 
 ## API
 
