@@ -136,7 +136,7 @@ Allow for fetching some sort of static content.  The contents of the static file
 
 Structure the database so that it can answer typical Business Analytics questions.  Marketting may want to know "What was the most popular game played last month by users who played more than 30 minutes of this specific game".  We may also want to be answer things like "How many new games were added to the system last week".
 
-As mentioned in the route definitions... Allow for a way to decouple playtime aggregation from users PII (their id).  In the event a user deletes their account it's important the business does not "forget" about the time a game was played.  It's vitally important however that there's *nothing* tieing the deleted user back to the games they owned or played after the account is deleted.
+As mentioned in the route definitions... Allow for a way to decouple playtime aggregation from users PII (their id).  In the event a user deletes their account it's important the business does not "forget" about the time a game was played.  It's vitally important however that there's *nothing* tying the deleted user back to the games they owned or played after the account is deleted.
 
 Api, Route and database performance is important. Avoid processing input data sequentially where relevant.  Avoid connecting to the database when it's not needed.  
 
